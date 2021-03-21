@@ -27,7 +27,7 @@ void APDS9960::setup() {
     this->mark_failed();
     return;
   }
-  #ESP_LOGCONFIG(TAG, "DEBUG: APDS9960 ID" + id);
+  //ESP_LOGCONFIG(TAG, "DEBUG: APDS9960 ID" + id);
   ESP_LOGD(TAG, "DEBUG: APDS9960 ID=%.1f%%", id);
 
   // ATime (ADC integration time, 2.78ms increments, 0x81) -> 0xDB (103ms)
