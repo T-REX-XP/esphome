@@ -14,7 +14,7 @@ static const char *TAG = "apds9960";
 #define APDS9960_WRITE_BYTE(reg, value) APDS9960_ERROR_CHECK(this->write_byte(reg, value));
 
 void APDS9960::setup() {
-  ESP_LOGCONFIG(TAG, "Setting up APDS9960...");
+  ESP_LOGCONFIG(TAG, "1111-Setting up APDS9960...");
   uint8_t id;
   if (!this->read_byte(0x92, &id)) {  // ID register
     this->error_code_ = COMMUNICATION_FAILED;
@@ -22,15 +22,15 @@ void APDS9960::setup() {
     return;
   }
 
-  if (id != 0xAB && id != 0x9C && id != 0xA8) {  // APDS9960 all should have one of these IDs
+  /*if (id != 0xAB && id != 0x9C && id != 0xA8) {  // APDS9960 all should have one of these IDs
     this->error_code_ = WRONG_ID;
     this->mark_failed();
     return;
-  }
+  }*/
   //ESP_LOGCONFIG(TAG, "DEBUG: APDS9960 ID" + id);
   ESP_LOGD(TAG, "DEBUG: APDS9960 ID=%.1f%%", id);
   ESP_LOGCONFIG(TAG, "APDS9960--");
-  ESP_LOGCONFIG(TAG, id);
+  //ESP_LOGCONFIG(TAG, id);
   // ATime (ADC integration time, 2.78ms increments, 0x81) -> 0xDB (103ms)
   APDS9960_WRITE_BYTE(0x81, 0xDB);
   // WTime (Wait time, 0x83) -> 0xF6 (27ms)
